@@ -1,0 +1,43 @@
+<ng-container [ngSwitch]="tag">
+  <ng-container *ngSwitchCase="'input'">
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="'text'">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder" type="text" #text (blur)="onGetValueInput(text.value)">
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngSwitchCase="'password'">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="********" [type]="isShowPassword ? 'text' : 'password'" #password (blur)="onGetValueInput(password.value)">
+          <button mat-icon-button matSuffix (click)="isShowPassword = !isShowPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isShowPassword">
+            <mat-icon>{{isShowPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngSwitchCase="'number'">
+        number
+      </ng-container>
+      <ng-container *ngSwitchCase="'email'">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Ex. pat@example.com" #email type="email" (blur)="onGetValueInput(email.value)">
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngSwitchCase="'date'">
+        date
+      </ng-container>
+      <ng-container *ngSwitchCase="'datetime-local'">
+        datetime-local
+      </ng-container>
+      <ng-container *ngSwitchCase="'search'">
+        search
+      </ng-container>
+      <ng-container *ngSwitchCase="'tel'">
+        tel
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'textarea'"></ng-container>
+</ng-container>
