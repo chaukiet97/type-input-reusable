@@ -1,12 +1,12 @@
 <div class="layout-main">
   <form [formGroup]="form" *ngIf="form">
     <div>
-      <app-input-type (control)="getValueComponent($event)" [tag]="'input'" [type]="'email'"></app-input-type>
+      <app-input-type (control)="getValueComponent($event)" [tag]="'input'" [type]="'email'" [label]="'Địa chỉ email'"></app-input-type>
     </div>
     <div>
-      <app-input-type (control)="getValueComponent($event)" [tag]="'input'" [type]="'password'"></app-input-type>
+      <app-input-type (control)="getValueComponent($event)" [tag]="'input'" [type]="'password'" [label]="'Mật khẩu'"></app-input-type>
     </div>
   </form>
   <!-- [disabled]="form.invalid" -->
-  <button mat-button (click)="submitForm()" >OK</button>
+  <button mat-button (click)="submitForm()" [disabled]="form.invalid">OK</button>
 </div>

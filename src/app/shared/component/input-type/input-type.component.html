@@ -3,14 +3,14 @@
     <ng-container [ngSwitch]="type">
       <ng-container *ngSwitchCase="'text'">
         <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="Placeholder" type="text" #text (blur)="onGetValueInput(text.value)">
+          <mat-label>{{label}}</mat-label>
+          <input matInput placeholder="Placeholder" type="text" #text (keyup)="onGetValueInput(text.value)">
         </mat-form-field>
       </ng-container>
       <ng-container *ngSwitchCase="'password'">
         <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="********" [type]="isShowPassword ? 'text' : 'password'" #password (blur)="onGetValueInput(password.value)">
+          <mat-label>{{label}}</mat-label>
+          <input matInput placeholder="********" [type]="isShowPassword ? 'text' : 'password'" #password (keyup)="onGetValueInput(password.value)" required>
           <button mat-icon-button matSuffix (click)="isShowPassword = !isShowPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isShowPassword">
             <mat-icon>{{isShowPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
           </button>
@@ -20,9 +20,10 @@
         number
       </ng-container>
       <ng-container *ngSwitchCase="'email'">
-        <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="Ex. pat@example.com" #email type="email" (blur)="onGetValueInput(email.value)">
+        <mat-form-field appearance="outline" [ngClass]="isEmail?'border-error':'input'">
+          <mat-label>{{label}}</mat-label>
+          <input matInput placeholder="Ex. pat@example.com" #email type="email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" (keyup)="onGetValueInput(email.value)" required>
+          <mat-hint *ngIf="isEmail" [ngClass]="{'text-error':isEmail}">{{getErrorMessage(email.value)}}</mat-hint>
         </mat-form-field>
       </ng-container>
       <ng-container *ngSwitchCase="'date'">
